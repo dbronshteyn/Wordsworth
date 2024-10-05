@@ -41,4 +41,8 @@ public class FlashcardService {
     public void deleteById(Long id) {
         flashcardRepository.deleteById(id);
     }
+
+    public void deleteAll() {
+        flashcardRepository.deleteAll();
+    }
 }

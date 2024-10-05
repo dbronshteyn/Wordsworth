@@ -4,6 +4,7 @@ import com.danielb.project.Wordsworth.model.FlashcardSet;
 import com.danielb.project.Wordsworth.repository.FlashcardSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,7 +30,31 @@ public class FlashcardSetService {
         return flashcardSetRepository.findById(id).orElse(null);
     }
 
+    @Transactional
+    public FlashcardSet updateFlashcardSet(Long id, FlashcardSet flashcardSet) {
+        FlashcardSet existingSet = flashcardSetRepository.findById(id).orElseThrow();
+        existingSet.setName(flashcardSet.getName());
+        existingSet.setDescription(flashcardSet.getDescription());
+        existingSet.setTotalFlashcards(flashcardSet.getTotalFlashcards());
+        existingSet.setFavorite(flashcardSet.isFavorite());
+
+        // Clear and update the flashcards collection
+        if (existingSet.getFlashcards() != null) {
+            existingSet.getFlashcards().clear();
+            if (flashcardSet.getFlashcards() != null) {
+                existingSet.getFlashcards().addAll(flashcardSet.getFlashcards());
+            }
+        }
+
+        return flashcardSetRepository.save(existingSet);
+    }
+
+    @Transactional
     public void deleteById(Long id) {
         flashcardSetRepository.deleteById(id);
+    }
+
+    public void deleteAll() {
+        flashcardSetRepository.deleteAll();
     }
 }
