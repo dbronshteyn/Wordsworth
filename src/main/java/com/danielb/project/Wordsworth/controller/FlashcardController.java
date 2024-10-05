@@ -29,9 +29,9 @@ public class FlashcardController {
         if (flashcardSet != null) {
             List<Flashcard> flashcards = flashcardService.findByFlashcardSet(flashcardSet);
             return ResponseEntity.ok(flashcards);
-        } else {
-            return ResponseEntity.notFound().build();
         }
+
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping("/{id}")
@@ -41,12 +41,10 @@ public class FlashcardController {
             Flashcard flashcard = flashcardService.findByIdAndFlashcardSet(id, flashcardSet);
             if (flashcard != null) {
                 return ResponseEntity.ok(flashcard);
-            } else {
-                return ResponseEntity.notFound().build();
             }
-        } else {
-            return ResponseEntity.notFound().build();
         }
+
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping
@@ -56,9 +54,9 @@ public class FlashcardController {
             flashcard.setFlashcardSet(flashcardSet);
             Flashcard createdFlashcard = flashcardService.save(flashcard);
             return ResponseEntity.ok(createdFlashcard);
-        } else {
-            return ResponseEntity.notFound().build();
         }
+
+        return ResponseEntity.notFound().build();
     }
 
     @PutMapping("/{id}")
@@ -71,12 +69,10 @@ public class FlashcardController {
                 flashcard.setFlashcardSet(flashcardSet);
                 Flashcard updatedFlashcard = flashcardService.save(flashcard);
                 return ResponseEntity.ok(updatedFlashcard);
-            } else {
-                return ResponseEntity.notFound().build();
             }
-        } else {
-            return ResponseEntity.notFound().build();
         }
+
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")
@@ -87,12 +83,10 @@ public class FlashcardController {
             if (existingFlashcard != null) {
                 flashcardService.deleteById(id);
                 return ResponseEntity.noContent().build();
-            } else {
-                return ResponseEntity.notFound().build();
             }
-        } else {
-            return ResponseEntity.notFound().build();
         }
+
+        return ResponseEntity.notFound().build();
     }
 
 
