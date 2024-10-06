@@ -27,13 +27,4 @@ public class Flashcard {
     @JsonBackReference
     private FlashcardSet flashcardSet;
 
-    public Flashcard(String term, String definition, int correctAttempts, int totalAttempts, boolean mastered, FlashcardSet flashcardSet) {
-        this.term = term;
-        this.definition = definition;
-        this.correctAttempts = correctAttempts;
-        this.totalAttempts = totalAttempts;
-        this.mastered = mastered;
-        this.flashcardSet = flashcardSet;
-    }
-
 }
