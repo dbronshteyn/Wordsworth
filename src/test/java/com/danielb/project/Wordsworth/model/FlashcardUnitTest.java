@@ -3,7 +3,7 @@ package com.danielb.project.Wordsworth.model;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class FlashcardTest {
+class FlashcardUnitTest {
 
     @Test
     void testFlashcardConstructor() {
