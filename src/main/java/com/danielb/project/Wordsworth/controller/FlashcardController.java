@@ -53,6 +53,7 @@ public class FlashcardController {
         if (flashcardSet != null) {
             flashcard.setFlashcardSet(flashcardSet);
             Flashcard createdFlashcard = flashcardService.save(flashcard);
+
             return ResponseEntity.ok(createdFlashcard);
         }
 
@@ -82,6 +83,7 @@ public class FlashcardController {
             Flashcard existingFlashcard = flashcardService.findByIdAndFlashcardSet(id, flashcardSet);
             if (existingFlashcard != null) {
                 flashcardService.deleteById(id);
+
                 return ResponseEntity.noContent().build();
             }
         }
