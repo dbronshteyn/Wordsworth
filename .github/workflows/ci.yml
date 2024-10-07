@@ -34,5 +34,20 @@ jobs:
       - name: Run unit tests
         run: mvn test -Dtest=*UnitTest
 
-#      - name: Run integration tests
-#        run: mvn verify -Dtest=*IntegrationTest
+      - name: Run integration tests
+        run: mvn verify -Dtest=*IntegrationTest
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: target/surefire-reports/*.xml
+
+      - name: Report test results
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: Test Results
+          path: target/surefire-reports/*.xml
+          reporter: junit

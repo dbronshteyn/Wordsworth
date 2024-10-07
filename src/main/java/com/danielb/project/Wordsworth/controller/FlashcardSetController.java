@@ -6,7 +6,9 @@ import com.danielb.project.Wordsworth.repository.FlashcardSetRepository;
 import com.danielb.project.Wordsworth.service.DatabaseSeed;
 import com.danielb.project.Wordsworth.service.FlashcardSetService;
 import com.danielb.project.Wordsworth.service.FlashcardService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -46,14 +48,14 @@ public class FlashcardSetController {
     }
 
     @PostMapping
-    public ResponseEntity<FlashcardSet> createFlashcardSet(@RequestBody FlashcardSet flashcardSet) {
+    public ResponseEntity<FlashcardSet> createFlashcardSet(@Valid @RequestBody FlashcardSet flashcardSet) {
         FlashcardSet createdFlashcardSet = flashcardSetService.save(flashcardSet);
 
-        return ResponseEntity.ok(createdFlashcardSet);
+        return new ResponseEntity<>(createdFlashcardSet, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<FlashcardSet> updateFlashcardSet(@PathVariable Long id, @RequestBody FlashcardSet flashcardSet) {
+    public ResponseEntity<FlashcardSet> updateFlashcardSet(@PathVariable Long id, @Valid @RequestBody FlashcardSet flashcardSet) {
         FlashcardSet existingFlashcardSet = flashcardSetService.findById(id);
 
         if (existingFlashcardSet != null) {

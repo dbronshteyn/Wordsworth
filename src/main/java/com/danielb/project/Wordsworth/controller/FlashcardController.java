@@ -5,6 +5,7 @@ import com.danielb.project.Wordsworth.model.FlashcardSet;
 import com.danielb.project.Wordsworth.service.FlashcardService;
 import com.danielb.project.Wordsworth.service.FlashcardSetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,7 +55,7 @@ public class FlashcardController {
             flashcard.setFlashcardSet(flashcardSet);
             Flashcard createdFlashcard = flashcardService.save(flashcard);
 
-            return ResponseEntity.ok(createdFlashcard);
+            return new ResponseEntity<>(createdFlashcard, HttpStatus.CREATED);
         }
 
         return ResponseEntity.notFound().build();

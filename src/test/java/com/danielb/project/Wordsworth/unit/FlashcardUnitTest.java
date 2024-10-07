@@ -1,5 +1,7 @@
-package com.danielb.project.Wordsworth.model;
+package com.danielb.project.Wordsworth.unit;
 
+import com.danielb.project.Wordsworth.model.Flashcard;
+import com.danielb.project.Wordsworth.model.FlashcardSet;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

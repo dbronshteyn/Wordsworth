@@ -22,18 +22,25 @@ public class FlashcardService {
         return flashcardRepository.save(flashcard);
     }
 
-    public List<Flashcard> findAll() {
-        return flashcardRepository.findAll();
-    }
-
-    public Flashcard findById(Long id) {
-        return flashcardRepository.findById(id).orElse(null);
-    }
+//    public List<Flashcard> findAll() {
+//        return flashcardRepository.findAll();
+//    }
+//
+//    public Flashcard findById(Long id) {
+//        return flashcardRepository.findById(id).orElse(null);
+//    }
 
     public List<Flashcard> findByFlashcardSet(FlashcardSet flashcardSet) {
         return flashcardRepository.findByFlashcardSet(flashcardSet);
     }
 
+    /**
+     * Find a flashcard by its id and the flashcard set it belongs to.
+     *
+     * @param id           the id of the flashcard
+     * @param flashcardSet the flashcard set the flashcard belongs to
+     * @return the flashcard if found, otherwise null
+     */
     public Flashcard findByIdAndFlashcardSet(Long id, FlashcardSet flashcardSet) {
         return flashcardRepository.findByIdAndFlashcardSet(id, flashcardSet).orElse(null);
     }

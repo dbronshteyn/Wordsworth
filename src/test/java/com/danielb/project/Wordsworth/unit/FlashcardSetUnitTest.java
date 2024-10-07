@@ -1,5 +1,7 @@
-package com.danielb.project.Wordsworth.model;
+package com.danielb.project.Wordsworth.unit;
 
+import com.danielb.project.Wordsworth.model.Flashcard;
+import com.danielb.project.Wordsworth.model.FlashcardSet;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
@@ -80,5 +82,30 @@ class FlashcardSetUnitTest {
         assertNotEquals(flashcardSet1, flashcardSet3);
         assertEquals(flashcardSet1.hashCode(), flashcardSet2.hashCode());
         assertNotEquals(flashcardSet1.hashCode(), flashcardSet3.hashCode());
+    }
+
+    @Test
+    void testTotalFlashcardsWhenAddingFlashcards() {
+        FlashcardSet flashcardSet = new FlashcardSet();
+        flashcardSet.setFlashcards(new ArrayList<>());
+
+        Flashcard flashcard1 = new Flashcard();
+        flashcard1.setTerm("Term1");
+        flashcard1.setDefinition("Definition1");
+        flashcard1.setFlashcardSet(flashcardSet);
+
+        Flashcard flashcard2 = new Flashcard();
+        flashcard2.setTerm("Term2");
+        flashcard2.setDefinition("Definition2");
+        flashcard2.setFlashcardSet(flashcardSet);
+
+        flashcardSet.getFlashcards().add(flashcard1);
+
+        assertEquals(1, flashcardSet.getTotalFlashcards());
+
+
+        flashcardSet.getFlashcards().add(flashcard2);
+
+        assertEquals(2, flashcardSet.getTotalFlashcards());
     }
 }
