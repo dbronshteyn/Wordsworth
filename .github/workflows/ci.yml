@@ -50,4 +50,4 @@ jobs:
         with:
           name: Test Results
           path: target/surefire-reports/*.xml
-          reporter: junit
+          reporter: junit-xml
