@@ -7,7 +7,14 @@ import com.danielb.project.Wordsworth.service.FlashcardSetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -29,10 +36,11 @@ public class FlashcardController {
         FlashcardSet flashcardSet = flashcardSetService.findById(setId);
         if (flashcardSet != null) {
             List<Flashcard> flashcards = flashcardService.findByFlashcardSet(flashcardSet);
-            return ResponseEntity.ok(flashcards);
+
+            return new ResponseEntity<>(flashcards, HttpStatus.OK);
         }
 
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/{id}")
@@ -41,11 +49,11 @@ public class FlashcardController {
         if (flashcardSet != null) {
             Flashcard flashcard = flashcardService.findByIdAndFlashcardSet(id, flashcardSet);
             if (flashcard != null) {
-                return ResponseEntity.ok(flashcard);
+                return new ResponseEntity<>(flashcard, HttpStatus.OK);
             }
         }
 
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping
@@ -58,7 +66,7 @@ public class FlashcardController {
             return new ResponseEntity<>(createdFlashcard, HttpStatus.CREATED);
         }
 
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PutMapping("/{id}")
@@ -70,11 +78,12 @@ public class FlashcardController {
                 flashcard.setId(id);
                 flashcard.setFlashcardSet(flashcardSet);
                 Flashcard updatedFlashcard = flashcardService.save(flashcard);
-                return ResponseEntity.ok(updatedFlashcard);
+
+                return new ResponseEntity<>(updatedFlashcard, HttpStatus.OK);
             }
         }
 
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
@@ -85,11 +94,11 @@ public class FlashcardController {
             if (existingFlashcard != null) {
                 flashcardService.deleteById(id);
 
-                return ResponseEntity.noContent().build();
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
         }
 
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 

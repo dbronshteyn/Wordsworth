@@ -1,17 +1,21 @@
 package com.danielb.project.Wordsworth.controller;
 
-import com.danielb.project.Wordsworth.model.Flashcard;
 import com.danielb.project.Wordsworth.model.FlashcardSet;
-import com.danielb.project.Wordsworth.repository.FlashcardSetRepository;
 import com.danielb.project.Wordsworth.service.DatabaseSeed;
 import com.danielb.project.Wordsworth.service.FlashcardSetService;
-import com.danielb.project.Wordsworth.service.FlashcardService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.List;
 
@@ -20,20 +24,19 @@ import java.util.List;
 public class FlashcardSetController {
 
     private FlashcardSetService flashcardSetService;
-    private FlashcardService flashcardService;
     private DatabaseSeed databaseSeed;
 
     @Autowired
-    public FlashcardSetController(FlashcardSetService flashcardSetService, FlashcardService flashcardService, FlashcardSetRepository flashcardSetRepository, DatabaseSeed databaseSeed) {
+    public FlashcardSetController(FlashcardSetService flashcardSetService, DatabaseSeed databaseSeed) {
         this.flashcardSetService = flashcardSetService;
-        this.flashcardService = flashcardService;
         this.databaseSeed = databaseSeed;
     }
 
     @GetMapping
     public ResponseEntity<List<FlashcardSet>> getAllFlashcardSets() {
         List<FlashcardSet> flashcardSets = flashcardSetService.findAll();
-        return ResponseEntity.ok(flashcardSets);
+
+        return new ResponseEntity<>(flashcardSets, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -41,10 +44,10 @@ public class FlashcardSetController {
         FlashcardSet flashcardSet = flashcardSetService.findById(id);
 
         if (flashcardSet != null) {
-            return ResponseEntity.ok(flashcardSet);
+            return new ResponseEntity<>(flashcardSet, HttpStatus.OK);
         }
 
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping
@@ -60,10 +63,10 @@ public class FlashcardSetController {
 
         if (existingFlashcardSet != null) {
             FlashcardSet updatedFlashcardSet = flashcardSetService.updateFlashcardSet(id, flashcardSet);
-            return ResponseEntity.ok(updatedFlashcardSet);
+            return new ResponseEntity<>(updatedFlashcardSet, HttpStatus.OK);
         }
 
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
@@ -72,16 +75,16 @@ public class FlashcardSetController {
 
         if (existingFlashcardSet != null) {
             flashcardSetService.deleteById(id);
-            return ResponseEntity.noContent().build();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
-        return ResponseEntity.notFound().build();
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/seed")
     public ResponseEntity<Void> seedDatabase() {
         databaseSeed.seedDatabase();
-        return ResponseEntity.noContent().build();
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 

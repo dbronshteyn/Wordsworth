@@ -3,7 +3,13 @@ package com.danielb.project.Wordsworth.unit;
 import com.danielb.project.Wordsworth.model.Flashcard;
 import com.danielb.project.Wordsworth.model.FlashcardSet;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
