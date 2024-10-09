@@ -1,8 +1,8 @@
-package com.danielb.project.Wordsworth.controller;
+package com.danielb.project.wordsworth.controller;
 
-import com.danielb.project.Wordsworth.model.FlashcardSet;
-import com.danielb.project.Wordsworth.service.DatabaseSeed;
-import com.danielb.project.Wordsworth.service.FlashcardSetService;
+import com.danielb.project.wordsworth.model.FlashcardSet;
+import com.danielb.project.wordsworth.service.DatabaseSeed;
+import com.danielb.project.wordsworth.service.FlashcardSetService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

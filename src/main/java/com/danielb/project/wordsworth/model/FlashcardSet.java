@@ -1,4 +1,4 @@
-package com.danielb.project.Wordsworth.model;
+package com.danielb.project.wordsworth.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,7 +35,7 @@ public class FlashcardSet {
 
     @OneToMany(mappedBy = "flashcardSet", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    private List<Flashcard> flashcards = new ArrayList<>();
+    private List<Flashcard> flashcards;
 
     @JsonProperty
     public int getTotalFlashcards() {

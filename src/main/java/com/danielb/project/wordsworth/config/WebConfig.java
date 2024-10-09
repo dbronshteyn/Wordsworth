@@ -1,4 +1,4 @@
-package com.danielb.project.Wordsworth.config;
+package com.danielb.project.wordsworth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

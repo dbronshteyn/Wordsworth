@@ -1,9 +1,9 @@
-package com.danielb.project.Wordsworth.controller;
+package com.danielb.project.wordsworth.controller;
 
-import com.danielb.project.Wordsworth.model.Flashcard;
-import com.danielb.project.Wordsworth.model.FlashcardSet;
-import com.danielb.project.Wordsworth.service.FlashcardService;
-import com.danielb.project.Wordsworth.service.FlashcardSetService;
+import com.danielb.project.wordsworth.model.Flashcard;
+import com.danielb.project.wordsworth.model.FlashcardSet;
+import com.danielb.project.wordsworth.service.FlashcardService;
+import com.danielb.project.wordsworth.service.FlashcardSetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

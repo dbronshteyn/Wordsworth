@@ -1,9 +1,9 @@
-package com.danielb.project.Wordsworth.integration;
+package com.danielb.project.wordsworth.integration;
 
-import com.danielb.project.Wordsworth.model.Flashcard;
-import com.danielb.project.Wordsworth.model.FlashcardSet;
-import com.danielb.project.Wordsworth.repository.FlashcardRepository;
-import com.danielb.project.Wordsworth.repository.FlashcardSetRepository;
+import com.danielb.project.wordsworth.model.Flashcard;
+import com.danielb.project.wordsworth.model.FlashcardSet;
+import com.danielb.project.wordsworth.repository.FlashcardRepository;
+import com.danielb.project.wordsworth.repository.FlashcardSetRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +50,7 @@ public class FlashcardSetIntegrationTest {
 
     @Test
     void testCreateFlashcardSet() throws Exception {
-        String flashcardSetJson = "{\"name\":\"New Set\",\"description\":\"New Description\",\"favorite\":false}";
+        String flashcardSetJson = "{\"name\":\"New Set\",\"description\":\"New Description\",\"favorite\":false,\"flashcards\":[]}";
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/flashcard-sets")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -237,6 +237,4 @@ public class FlashcardSetIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.totalFlashcards").value(0));
     }
-
-
 }

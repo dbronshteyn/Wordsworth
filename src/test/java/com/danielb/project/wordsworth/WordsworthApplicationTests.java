@@ -1,4 +1,4 @@
-package com.danielb.project.Wordsworth;
+package com.danielb.project.wordsworth;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

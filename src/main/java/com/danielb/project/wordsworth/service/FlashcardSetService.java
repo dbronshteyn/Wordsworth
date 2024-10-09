@@ -1,7 +1,7 @@
-package com.danielb.project.Wordsworth.service;
+package com.danielb.project.wordsworth.service;
 
-import com.danielb.project.Wordsworth.model.FlashcardSet;
-import com.danielb.project.Wordsworth.repository.FlashcardSetRepository;
+import com.danielb.project.wordsworth.model.FlashcardSet;
+import com.danielb.project.wordsworth.repository.FlashcardSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,24 +30,31 @@ public class FlashcardSetService {
         return flashcardSetRepository.findById(id).orElse(null);
     }
 
-    @Transactional
-    public FlashcardSet updateFlashcardSet(Long id, FlashcardSet flashcardSet) {
-        FlashcardSet existingSet = flashcardSetRepository.findById(id).orElseThrow();
+@Transactional
+public FlashcardSet updateFlashcardSet(Long id, FlashcardSet flashcardSet) {
+    FlashcardSet existingSet = flashcardSetRepository.findById(id).orElseThrow();
+
+    if (!existingSet.getName().equals(flashcardSet.getName())) {
         existingSet.setName(flashcardSet.getName());
-        existingSet.setDescription(flashcardSet.getDescription());
-        existingSet.setTotalFlashcards(flashcardSet.getTotalFlashcards());
-        existingSet.setFavorite(flashcardSet.isFavorite());
-
-        // Clear and update the flashcards collection
-        if (existingSet.getFlashcards() != null) {
-            existingSet.getFlashcards().clear();
-            if (flashcardSet.getFlashcards() != null) {
-                existingSet.getFlashcards().addAll(flashcardSet.getFlashcards());
-            }
-        }
-
-        return flashcardSetRepository.save(existingSet);
     }
+    if (!existingSet.getDescription().equals(flashcardSet.getDescription())) {
+        existingSet.setDescription(flashcardSet.getDescription());
+    }
+    if (existingSet.isFavorite() != flashcardSet.isFavorite()) {
+        existingSet.setFavorite(flashcardSet.isFavorite());
+    }
+
+    /**
+     * Removed the ability for API users to update flashcards through the FlashcardSet API for speed and simplicity
+    existingSet.getFlashcards().clear();
+    flashcardSet.getFlashcards().forEach(flashcard -> {
+        flashcard.setFlashcardSet(existingSet);
+        existingSet.getFlashcards().add(flashcard);
+    });
+     */
+
+    return flashcardSetRepository.save(existingSet);
+}
 
     @Transactional
     public void deleteById(Long id) {

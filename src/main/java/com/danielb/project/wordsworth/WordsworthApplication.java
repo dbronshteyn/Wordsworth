@@ -1,4 +1,4 @@
-package com.danielb.project.Wordsworth;
+package com.danielb.project.wordsworth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

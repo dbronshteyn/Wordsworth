@@ -1,8 +1,8 @@
-package com.danielb.project.Wordsworth.service;
+package com.danielb.project.wordsworth.service;
 
-import com.danielb.project.Wordsworth.model.Flashcard;
-import com.danielb.project.Wordsworth.model.FlashcardSet;
-import com.danielb.project.Wordsworth.repository.FlashcardRepository;
+import com.danielb.project.wordsworth.model.Flashcard;
+import com.danielb.project.wordsworth.model.FlashcardSet;
+import com.danielb.project.wordsworth.repository.FlashcardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.danielb.project.Wordsworth.model;
+package com.danielb.project.wordsworth.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
