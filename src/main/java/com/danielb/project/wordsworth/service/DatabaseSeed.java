@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service for seeding the database with initial data.
+ */
 @Service
 public class DatabaseSeed {
 
@@ -19,6 +22,9 @@ public class DatabaseSeed {
         this.flashcardService = flashcardService;
     }
 
+    /**
+     * Seed the database with initial data.
+     */
     public void seedDatabase() {
 
         // Clear existing data (if necessary)

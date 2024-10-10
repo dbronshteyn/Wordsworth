@@ -5,9 +5,13 @@ import com.danielb.project.wordsworth.model.FlashcardSet;
 import com.danielb.project.wordsworth.repository.FlashcardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * Service for managing flashcards.
+ */
 @Service
 public class FlashcardService {
 
@@ -18,18 +22,23 @@ public class FlashcardService {
         this.flashcardRepository = flashcardRepository;
     }
 
+    /**
+     * Save a flashcard.
+     *
+     * @param flashcard the flashcard to save
+     * @return the saved flashcard
+     */
+    @Transactional
     public Flashcard save(Flashcard flashcard) {
         return flashcardRepository.save(flashcard);
     }
 
-//    public List<Flashcard> findAll() {
-//        return flashcardRepository.findAll();
-//    }
-//
-//    public Flashcard findById(Long id) {
-//        return flashcardRepository.findById(id).orElse(null);
-//    }
-
+    /**
+     * Find all flashcards in a flashcard set.
+     *
+     * @param flashcardSet the flashcard set
+     * @return a list of flashcards
+     */
     public List<Flashcard> findByFlashcardSet(FlashcardSet flashcardSet) {
         return flashcardRepository.findByFlashcardSet(flashcardSet);
     }
@@ -45,10 +54,21 @@ public class FlashcardService {
         return flashcardRepository.findByIdAndFlashcardSet(id, flashcardSet).orElse(null);
     }
 
+    /**
+     * Find a flashcard by its id.
+     *
+     * @param id the id of the flashcard
+     * @return the flashcard if found, otherwise null
+     */
+    @Transactional
     public void deleteById(Long id) {
         flashcardRepository.deleteById(id);
     }
 
+    /**
+     * Delete all flashcards.
+     */
+    @Transactional
     public void deleteAll() {
         flashcardRepository.deleteAll();
     }

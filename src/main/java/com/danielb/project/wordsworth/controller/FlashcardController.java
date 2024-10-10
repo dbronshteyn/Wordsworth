@@ -18,12 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * REST controller for managing flashcards.
+ */
 @RestController
 @RequestMapping("/api/flashcard-sets/{setId}/flashcards")
 public class FlashcardController {
 
-    private FlashcardService flashcardService;
-    private FlashcardSetService flashcardSetService;
+    private final FlashcardService flashcardService;
+    private final FlashcardSetService flashcardSetService;
 
     @Autowired
     public FlashcardController(FlashcardService flashcardService, FlashcardSetService flashcardSetService) {
@@ -31,6 +34,12 @@ public class FlashcardController {
         this.flashcardSetService = flashcardSetService;
     }
 
+    /**
+     * Get all flashcards in a flashcard set.
+     *
+     * @param setId the id of the flashcard set
+     * @return a list of flashcards
+     */
     @GetMapping
     public ResponseEntity<List<Flashcard>> getAllFlashcards(@PathVariable Long setId) {
         FlashcardSet flashcardSet = flashcardSetService.findById(setId);
@@ -43,6 +52,13 @@ public class FlashcardController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Get a flashcard by its id.
+     *
+     * @param setId the id of the flashcard set
+     * @param id    the id of the flashcard
+     * @return the flashcard if found, otherwise not found
+     */
     @GetMapping("/{id}")
     public ResponseEntity<Flashcard> getFlashcardById(@PathVariable Long setId, @PathVariable Long id) {
         FlashcardSet flashcardSet = flashcardSetService.findById(setId);
@@ -56,6 +72,13 @@ public class FlashcardController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Create a new flashcard.
+     *
+     * @param setId    the id of the flashcard set
+     * @param flashcard the flashcard to create
+     * @return the created flashcard if flashcard set exists, otherwise not found
+     */
     @PostMapping
     public ResponseEntity<Flashcard> createFlashcard(@PathVariable Long setId, @RequestBody Flashcard flashcard) {
         FlashcardSet flashcardSet = flashcardSetService.findById(setId);
@@ -69,6 +92,14 @@ public class FlashcardController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Update a flashcard.
+     *
+     * @param setId    the id of the flashcard set
+     * @param id       the id of the flashcard
+     * @param flashcard the flashcard to update
+     * @return the updated flashcard if flashcard set and flashcard exist, otherwise not found
+     */
     @PutMapping("/{id}")
     public ResponseEntity<Flashcard> updateFlashcard(@PathVariable Long setId, @PathVariable Long id, @RequestBody Flashcard flashcard) {
         FlashcardSet flashcardSet = flashcardSetService.findById(setId);
@@ -86,6 +117,13 @@ public class FlashcardController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Delete a flashcard.
+     *
+     * @param setId the id of the flashcard set
+     * @param id    the id of the flashcard
+     * @return no content if flashcard set and flashcard exist, otherwise not found
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFlashcard(@PathVariable Long setId, @PathVariable Long id) {
         FlashcardSet flashcardSet = flashcardSetService.findById(setId);

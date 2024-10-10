@@ -12,6 +12,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Represents a flashcard.
+ */
 @Entity
 @Data
 @NoArgsConstructor

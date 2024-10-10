@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * REST controller for managing flashcard sets.
+ */
 @RestController
 @RequestMapping("/api/flashcard-sets")
 public class FlashcardSetController {
@@ -32,6 +35,11 @@ public class FlashcardSetController {
         this.databaseSeed = databaseSeed;
     }
 
+    /**
+     * Get all flashcard sets.
+     *
+     * @return a list of flashcard sets
+     */
     @GetMapping
     public ResponseEntity<List<FlashcardSet>> getAllFlashcardSets() {
         List<FlashcardSet> flashcardSets = flashcardSetService.findAll();
@@ -39,6 +47,12 @@ public class FlashcardSetController {
         return new ResponseEntity<>(flashcardSets, HttpStatus.OK);
     }
 
+    /**
+     * Get a flashcard set by its id.
+     *
+     * @param id the id of the flashcard set
+     * @return the flashcard set if found, otherwise not found
+     */
     @GetMapping("/{id}")
     public ResponseEntity<FlashcardSet> getFlashcardSetById(@PathVariable Long id) {
         FlashcardSet flashcardSet = flashcardSetService.findById(id);
@@ -50,6 +64,12 @@ public class FlashcardSetController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Create a new flashcard set.
+     *
+     * @param flashcardSet the flashcard set to create
+     * @return the created flashcard set
+     */
     @PostMapping
     public ResponseEntity<FlashcardSet> createFlashcardSet(@Valid @RequestBody FlashcardSet flashcardSet) {
         FlashcardSet createdFlashcardSet = flashcardSetService.save(flashcardSet);
@@ -57,6 +77,13 @@ public class FlashcardSetController {
         return new ResponseEntity<>(createdFlashcardSet, HttpStatus.CREATED);
     }
 
+    /**
+     * Update a flashcard set.
+     *
+     * @param id          the id of the flashcard set
+     * @param flashcardSet the flashcard set to update
+     * @return the updated flashcard set if found, otherwise not found
+     */
     @PutMapping("/{id}")
     public ResponseEntity<FlashcardSet> updateFlashcardSet(@PathVariable Long id, @Valid @RequestBody FlashcardSet flashcardSet) {
         FlashcardSet existingFlashcardSet = flashcardSetService.findById(id);
@@ -69,6 +96,12 @@ public class FlashcardSetController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Delete a flashcard set.
+     *
+     * @param id the id of the flashcard set
+     * @return no content if found, otherwise not found
+     */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFlashcardSet(@PathVariable Long id) {
         FlashcardSet existingFlashcardSet = flashcardSetService.findById(id);
@@ -81,11 +114,14 @@ public class FlashcardSetController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Delete all flashcard sets.
+     *
+     * @return no content
+     */
     @PostMapping("/seed")
     public ResponseEntity<Void> seedDatabase() {
         databaseSeed.seedDatabase();
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
-
 }

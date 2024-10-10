@@ -19,6 +19,9 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a set of flashcards.
+ */
 @Entity
 @Data
 @NoArgsConstructor
@@ -40,11 +43,19 @@ public class FlashcardSet {
     @JsonManagedReference
     private List<Flashcard> flashcards;
 
+    /**
+     * Get the total number of flashcards in the set.
+     *
+     * @return the total number of flashcards
+     */
     @JsonProperty
     public int getTotalFlashcards() {
         return flashcards.size();
     }
 
+    /**
+     * Ensure that the flashcards list is initialized before persisting or updating.
+     */
     @PrePersist
     @PreUpdate
     private void ensureFlashcardsInitialized() {

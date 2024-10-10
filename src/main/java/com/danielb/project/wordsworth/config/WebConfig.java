@@ -7,7 +7,7 @@ import org.springframework.web.filter.HiddenHttpMethodFilter;
 /**
  * Configuration for web filters.
  *
- * I added this so that I could use HTTP DELETE requests in my controllers.
+ * I added this so that I could use HTTP PUT and HTTP DELETE requests in my controllers.
  */
 @Configuration
 public class WebConfig {
