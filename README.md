@@ -52,7 +52,7 @@ The main dependencies for this project as specified in the `pom.xml` file are:
 - `h2`: In-memory database for testing.
 
 ## Tools Used
-Spring: For building the application.
-IntelliJ IDEA Ultimate: For writing the code.
-Docker: For running PostgreSQL.
-Postman: For API testing.
+- Spring: For building the application.
+- IntelliJ IDEA Ultimate: For writing the code.
+- Docker: For running PostgreSQL.
+- Postman: For API testing.
