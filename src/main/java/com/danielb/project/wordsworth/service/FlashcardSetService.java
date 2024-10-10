@@ -30,31 +30,22 @@ public class FlashcardSetService {
         return flashcardSetRepository.findById(id).orElse(null);
     }
 
-@Transactional
-public FlashcardSet updateFlashcardSet(Long id, FlashcardSet flashcardSet) {
-    FlashcardSet existingSet = flashcardSetRepository.findById(id).orElseThrow();
+    @Transactional
+    public FlashcardSet updateFlashcardSet(Long id, FlashcardSet flashcardSet) {
+        FlashcardSet existingSet = flashcardSetRepository.findById(id).orElseThrow();
 
-    if (!existingSet.getName().equals(flashcardSet.getName())) {
-        existingSet.setName(flashcardSet.getName());
-    }
-    if (!existingSet.getDescription().equals(flashcardSet.getDescription())) {
-        existingSet.setDescription(flashcardSet.getDescription());
-    }
-    if (existingSet.isFavorite() != flashcardSet.isFavorite()) {
-        existingSet.setFavorite(flashcardSet.isFavorite());
-    }
+        if (!existingSet.getName().equals(flashcardSet.getName())) {
+            existingSet.setName(flashcardSet.getName());
+        }
+        if (!existingSet.getDescription().equals(flashcardSet.getDescription())) {
+            existingSet.setDescription(flashcardSet.getDescription());
+        }
+        if (existingSet.isFavorite() != flashcardSet.isFavorite()) {
+            existingSet.setFavorite(flashcardSet.isFavorite());
+        }
 
-    /**
-     * Removed the ability for API users to update flashcards through the FlashcardSet API for speed and simplicity
-    existingSet.getFlashcards().clear();
-    flashcardSet.getFlashcards().forEach(flashcard -> {
-        flashcard.setFlashcardSet(existingSet);
-        existingSet.getFlashcards().add(flashcard);
-    });
-     */
-
-    return flashcardSetRepository.save(existingSet);
-}
+        return flashcardSetRepository.save(existingSet);
+    }
 
     @Transactional
     public void deleteById(Long id) {
