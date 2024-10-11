@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class FlashcardSetService {
 
-    private FlashcardSetRepository flashcardSetRepository;
+    private final FlashcardSetRepository flashcardSetRepository;
 
     @Autowired
     public FlashcardSetService(FlashcardSetRepository flashcardSetRepository) {

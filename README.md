@@ -52,6 +52,11 @@ mvn spring-boot:run
 
 Once the application is running, you can access the API at `http://localhost:8080`.
 
+> **Note**: You can also run the application directly from your IDE by running the `WordsworthApplication` class.
+
+### 5. Access the API Documentation
+The API documentation is generated using Swagger UI and can be accessed at `http://localhost:8080/swagger-ui.html`.
+
 ## Dependencies
 The primary dependencies used in this project (defined in the `pom.xml` file) include:
 - **spring-boot-starter-data-jpa**: For ORM and data access.

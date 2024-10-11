@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class FlashcardService {
 
-    private FlashcardRepository flashcardRepository;
+    private final FlashcardRepository flashcardRepository;
 
     @Autowired
     public FlashcardService(FlashcardRepository flashcardRepository) {
@@ -55,10 +55,9 @@ public class FlashcardService {
     }
 
     /**
-     * Find a flashcard by its id.
+     * Delete a flashcard by its id.
      *
      * @param id the id of the flashcard
-     * @return the flashcard if found, otherwise null
      */
     @Transactional
     public void deleteById(Long id) {

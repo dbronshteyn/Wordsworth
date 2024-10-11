@@ -1,7 +1,6 @@
 package com.danielb.project.wordsworth.controller;
 
 import com.danielb.project.wordsworth.model.FlashcardSet;
-import com.danielb.project.wordsworth.service.DatabaseSeed;
 import com.danielb.project.wordsworth.service.FlashcardSetService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +25,11 @@ import java.util.List;
 @RequestMapping("/api/flashcard-sets")
 public class FlashcardSetController {
 
-    private FlashcardSetService flashcardSetService;
-    private DatabaseSeed databaseSeed;
+    private final FlashcardSetService flashcardSetService;
 
     @Autowired
-    public FlashcardSetController(FlashcardSetService flashcardSetService, DatabaseSeed databaseSeed) {
+    public FlashcardSetController(FlashcardSetService flashcardSetService) {
         this.flashcardSetService = flashcardSetService;
-        this.databaseSeed = databaseSeed;
     }
 
     /**
@@ -112,16 +109,5 @@ public class FlashcardSetController {
         }
 
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-
-    /**
-     * Delete all flashcard sets.
-     *
-     * @return no content
-     */
-    @PostMapping("/seed")
-    public ResponseEntity<Void> seedDatabase() {
-        databaseSeed.seedDatabase();
-        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

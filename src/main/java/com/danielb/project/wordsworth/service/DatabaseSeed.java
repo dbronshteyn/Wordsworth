@@ -13,8 +13,8 @@ import java.util.List;
 @Service
 public class DatabaseSeed {
 
-    private FlashcardSetService flashcardSetService;
-    private FlashcardService flashcardService;
+    private final FlashcardSetService flashcardSetService;
+    private final FlashcardService flashcardService;
 
     @Autowired
     public DatabaseSeed(FlashcardSetService flashcardSetService, FlashcardService flashcardService) {
