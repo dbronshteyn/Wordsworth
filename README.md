@@ -22,6 +22,8 @@ Ensure that you have Maven and Java installed on your machine. Then, build the p
 mvn clean install
 ```
 
+[https://stackoverflow.com/questions/35409788/how-to-clean-or-clean-build-my-maven-project-in-intellij-idea](If you are using IntelliJ and running into problems go to this Stack Overflow link)
+
 ### Configure the Database
 Set up a PostgreSQL database and configure the connection properties in the `application.properties` file located in `src/main/resources/`.
 
