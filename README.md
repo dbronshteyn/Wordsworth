@@ -7,7 +7,7 @@ The Wordsworth API allows users to create, manage, and review flashcard sets, an
 
 ## 🎥 Demo
 
-Check out a live demo of the Wordsworth frontend in action:
+Check out a demo of the Wordsworth frontend in action:
 
 [![Wordsworth Frontend Demo](https://img.youtube.com/vi/X6R_3I3cwxo/0.jpg)](https://youtu.be/X6R_3I3cwxo)
 
