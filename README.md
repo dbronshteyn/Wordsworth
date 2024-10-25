@@ -1,7 +1,7 @@
 # Wordsworth
 
 ## Description
-Wordsworth is a full-stack web application that provides flashcard functionality, designed to help users study more effectively. The backend is built using Spring Boot, while the frontend is under development using React. This repository contains the backend code, with the frontend repository to be added soon. A link to the frontend: [Frontend Wordsworth](https://github.com/dbronshteyn/frontend-wordsworth).
+Wordsworth is a full-stack web application that provides flashcard functionality, designed to help users study more effectively. The backend is built using Spring Boot, while the frontend is under development using React. This repository contains the backend code. To access the repository containing the frontend code [click here](https://github.com/dbronshteyn/frontend-wordsworth).
 
 The Wordsworth API allows users to create, manage, and review flashcard sets, and supports CRUD operations on individual flashcards.
 
