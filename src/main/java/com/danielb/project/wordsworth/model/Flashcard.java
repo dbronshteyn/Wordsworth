@@ -2,6 +2,7 @@ package com.danielb.project.wordsworth.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,7 +27,10 @@ public class Flashcard {
     private Long id;
 
     private String term;
+
+    @Column(columnDefinition = "TEXT")
     private String definition;
+
     private int correctAttempts;
     private int totalAttempts;
     private boolean mastered;
