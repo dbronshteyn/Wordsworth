@@ -63,3 +63,24 @@ jobs:
           detailed_summary: true # display detailed summary of the report
           include_passed: true # include passed tests in the results table
           title: "Integration Test Report"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install frontend dependencies
+        run: npm install
+        working-directory: src/main/frontend
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: src/main/frontend
