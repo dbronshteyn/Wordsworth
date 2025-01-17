@@ -49,18 +49,7 @@ git clone https://github.com/dbronshteyn/Wordsworth.git
 cd Wordsworth
 ```
 
-### 2. Build the Project
-Ensure that both Java and Maven are properly installed on your system. Then, build the project using Maven:
-```sh
-mvn clean install
-```
-
-To package a JAR file:
-```sh
-mvn package
-```
-
-### 3. Configure the Database and Start Ollama
+### 2. Configure the Database and Start Ollama
 Set up a PostgreSQL instance on your machine and update the connection details in the `application.properties` file, located in `src/main/resources/`.
 
 Example configuration:
@@ -79,6 +68,17 @@ Install and run [Ollama](https://ollama.com/). Then download Llama 3.2.
 > ```properties
 > spring.ai.ollama.chat.model=llama3.2
 > ```
+
+### 3. Build the Project
+Ensure that both Java and Maven are properly installed on your system. Then, build the project using Maven:
+```sh
+mvn clean install
+```
+
+To package a JAR file:
+```sh
+mvn package
+```
 
 ### 4. Run the Application
 You can start the application with:
