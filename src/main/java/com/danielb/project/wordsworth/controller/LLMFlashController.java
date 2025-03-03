@@ -43,17 +43,41 @@ public class LLMFlashController {
      */
     public String getPrompt(GenerateRequest generateRequest) {
         StringBuilder promptBuilder = new StringBuilder();
-        promptBuilder.append("Please generate a list of ").append(generateRequest.getTotal())
-                .append(" flashcards on the subject of ").append(generateRequest.getSubject())
-                .append(". Format each flashcard as follows:\n")
-                .append("**Card #**\n**Term**: [term text here]\n**Definition**: [definition text here]\n");
 
-        // Add optional parameters
-        if (generateRequest.isIncludeCode()) {
-            promptBuilder.append(" Include code examples where relevant.");
-        }
+        String promptTemplate = """
+            Please generate a list of %d flashcards on the subject of %s.
+            With the following prompt: %s
+            
+            Requirements:
+            - Each flashcard must follow this exact format:
+            **Card #**
+            **Term**: [concise term]
+            **Definition**: [clear, detailed definition]
+            
+            - Terms should be specific and focused
+            - Definitions should be comprehensive but concise
+            - Maximum length per definition: 200 words
+            - %s include code snippets where relevant and use Markdown formatting
+            
+            Format Example:
+            **Card #1**
+            **Term**: Algorithm
+            **Definition**: A step-by-step procedure for calculations.
+            
+            Please proceed with generating %d cards following this format exactly. 
+            No other text or explanations outside of the flashcards.
+            """;
 
-        promptBuilder.append("\nExample:\n**Card #1**\n**Term**: Algorithm\n**Definition**: A step-by-step procedure for calculations.");
+        String includeCode = generateRequest.isIncludeCode() ? "Please" : "Do not";
+
+        promptBuilder.append(String.format(promptTemplate,
+                generateRequest.getTotal(),
+                generateRequest.getSubject(),
+                generateRequest.getPrompt(),
+                includeCode,
+                generateRequest.getTotal()
+        ));
+
         return promptBuilder.toString();
     }
 
@@ -115,6 +139,8 @@ public class LLMFlashController {
     public ResponseEntity<FlashcardSet> generateFlashcards(@RequestBody GenerateRequest generateRequest) {
         String prompt = getPrompt(generateRequest);
         String response = generateResponse(prompt);
+
+        System.out.println("LLM response: " + response);
 
         try {
             List<Flashcard> flashcards = parseFlashcards(response);
