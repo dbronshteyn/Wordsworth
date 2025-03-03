@@ -42,6 +42,7 @@ public class LLMFlashController {
      * @return the structured prompt to send to the LLM
      */
     public String getPrompt(GenerateRequest generateRequest) {
+
         StringBuilder promptBuilder = new StringBuilder();
 
         String promptTemplate = """
